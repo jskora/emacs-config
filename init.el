@@ -3,13 +3,13 @@
 
 ;;; updated 7/19/2011
 
-;;; make sure init.el is compiled asap
-;;;-----------------------------------------------
-(require 'bytecomp)
-(defconst dot-emacs (concat (getenv "HOME") "/" ".emacs.d" "/" "init.el") "My dot emacs file")
-(setq compiled-dot-emacs (byte-compile-dest-file dot-emacs))
-(if (file-newer-than-file-p dot-emacs compiled-dot-emacs)
-    (message-box (concat "Please byte compile " dot-emacs)))
+;;;; make sure init.el is compiled asap
+;;;;-----------------------------------------------
+;(require 'bytecomp)
+;(defconst dot-emacs (concat (getenv "HOME") "/" ".emacs.d" "/" "init.el") "My dot emacs file")
+;(setq compiled-dot-emacs (byte-compile-dest-file dot-emacs))
+;(if (file-newer-than-file-p dot-emacs compiled-dot-emacs)
+;    (message-box (concat "Please byte compile " dot-emacs)))
 
 ;;; backups and auto-saves (files~ and #files#)
 ;;;-----------------------------------------------
@@ -17,8 +17,8 @@
 ;(setq make-backup-files nil)   ;;; files~
 ;(setq auto-save-default nil)   ;;; #files#
 ;;; put backups and autosaves in temp dir
-(defvar backup-dir (expand-file-name "~/.emacstmp/backup/"))
-(defvar autosave-dir (expand-file-name "~/.emacstmp/autosave/"))
+(defvar backup-dir (expand-file-name "~/.emacs.d/tmp/backup/"))
+(defvar autosave-dir (expand-file-name "~/.emacs.d/tmp/autosave/"))
 (setq backup-directory-alist (list (cons ".*" backup-dir)))
 (setq auto-save-list-file-prefix autosave-dir)
 (setq auto-save-file-name-transforms `((".*" ,autosave-dir t)))
@@ -31,7 +31,7 @@
 
 ;; pathes
 (setq home-emacs-dir (concat (getenv "HOME") "/.emacs.d/"))
-(setq my-load-path (list home-emacs-dir))
+(setq my-load-path (concat home-emacs-dir "lisp"))
 (setq load-path (append my-load-path load-path))
 
 ;(add-to-list 'load-path "/dev/emacs-23.2/lisp/")
